@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- This is the code that goes into the glif block. -->
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Colors</title>
+
+    <style>
+      html, body {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+      }
+
+      #gameFrame {
+          width: 100%;
+          height: 100vh; /* Use viewport height */
+          border: none;
+          position: fixed; /* Fix position to viewport */
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          /* Ensure iframe is above other content if needed */
+          z-index: 1;
+          /* Improve performance */
+          transform: translateZ(0);
+          /* Enable touch scrolling on mobile */
+          -webkit-overflow-scrolling: touch;
+      }
+
+  </style>
+
+</head>
+  <body>
+    <iframe id='gameFrame' title='Embedded content'></iframe>
+
+    <!-- use DOM elements since we can't count on corrent quote escaping -->
+    <div id='wordlist-json-content' style='display:none'>{
+    "Colors": [
+        "crimson",
+        "turquoise",
+        "lavender",
+        "emerald",
+        "indigo",
+        "magenta",
+        "coral",
+        "azure",
+        "chartreuse",
+        "periwinkle",
+        "sapphire",
+        "vermilion",
+        "teal",
+        "mauve",
+        "fuchsia"
+    ]
+}</div>
+
+    <script>
+    const wordlist_json_string = document.getElementById('wordlist-json-content').textContent
+    const wordlist_json = JSON.parse(wordlist_json_string)
+
+      function constructUrl() {
+        // const baseUrl = 'https://wanderingstan.github.io/wordsearch/wordsearch.html';
+        const baseUrl = 'file:///Users/wanderingstan/Developer/glif/minigames/wordsearch/wordsearch.html';
+        const url = new URL(baseUrl);
+        url.searchParams.append('settings', JSON.stringify(wordlist_json));
+        return url.toString();
+      }
+
+      // Function to update the iframe URL
+      function updateIframe() {
+        const iframe = document.getElementById('gameFrame');
+        iframe.src = constructUrl();
+      }
+
+      // Initial setup
+      updateIframe();
+
+    </script>
+  </body>
+</html>

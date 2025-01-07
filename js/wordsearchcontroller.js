@@ -28,11 +28,11 @@ function WordSearchController(gameId, listId, solveId, newGameId, instructionsId
 
   // Extract search parameters from the URL
   var urlParams = new URLSearchParams(window.location.search);
-  var theme = urlParams.get('theme');
-  var wordList = urlParams.get('word_list');
+  var settingsRaw = urlParams.get('settings');
+  var settings = settingsRaw ? JSON.parse(settingsRaw) : {};
 
-  // Parse the word list into a 2D array
-  var wordArray = wordList ? JSON.parse(wordList) : [];
+  var [theme, wordArray] = Object.entries(settings)[0];
+
 
   // Create the JSON object
   var searchTypes = {};
