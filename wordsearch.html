@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 
 <html>
-	<head>	
+	<head>
 		<meta charset="utf-8">
 		<title>Noor's Word Search Game!</title>
 	</head>
 	<body>
-		<h1>Noor's Word Search Game!</h1>
-		<h2 id = "instructions"></h2>
-		<h3 id = "themeIntro">The theme is: <span id = "wordTheme"></span></h3>
-		
-		<button id = "newGameButton" type = "button">New Game</button>
+		<h1 id = "themeIntro"><span id = "wordTheme"></span></h1>
+		<div id = "instructions"></div>
+
+		<!-- <button id = "newGameButton" type = "button">New Game</button> -->
 		<div id = "wordboard"></div>
 		<div id = "wordlist"></div>
 		<button id = "solveButton" type = "button">Release the sacred answers!</button>
@@ -24,9 +23,9 @@
 		<script src = "js/wordsearchlogic.js"></script>
 		<script src = "js/wordsearchview.js"></script>
 
-		<script>	
+		<script>
 			$(document).ready( function() {
-				new WordSearchController("#wordboard", "#wordlist", "#solveButton", "#newGameButton", "#instructions", 
+				new WordSearchController("#wordboard", "#wordlist", "#solveButton", "#newGameButton", "#instructions",
 					"#wordTheme");
 			})
 		</script>

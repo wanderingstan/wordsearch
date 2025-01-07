@@ -1,5 +1,29 @@
 "use strict";
 
+function calculateGridSize(words) {
+  // Flatten the array if it's 2D
+  const flattenedWords = words.flat();
+
+  // Constants for assumptions
+  const overlapFactor = 0.6; // Percentage of overlapping letters in the grid
+  const fillerFactor = 0.4; // Percentage of filler letters in the grid
+
+  // Calculate the total number of letters in all words
+  const totalLetters = flattenedWords.reduce((sum, word) => sum + word.length, 0);
+
+  // Estimate the effective number of letters in the grid (accounting for overlap)
+  const effectiveLetters = totalLetters / overlapFactor;
+
+  // Estimate the total grid area including filler letters
+  const gridArea = effectiveLetters / (1 - fillerFactor);
+
+  // Calculate the side length of the square grid
+  const gridSize = Math.ceil(Math.sqrt(gridArea));
+
+  return gridSize;
+}
+
+
 /** This object sets up the word search game, as well as button functions (for solving
  * and for refreshing/setting up a new game).
  *
@@ -69,8 +93,10 @@ function WordSearchController(gameId, listId, solveId, newGameId, instructionsId
 		//sets the headings to reflect the instructions and themes
 		updateHeadings(mainInstructions, searchTypesArray[randIndex]);
 
+    const gridSize = calculateGridSize(listOfWords);
+
 		//runs the logic of the game using a close of the word list (to avoid the actual object being altered)
-		game = new WordSearchLogic(listOfWords.slice(), 10);
+		game = new WordSearchLogic(listOfWords.slice(), gridSize);
 		game.setUpGame();
 
 		//generates the view of the game and sets up mouse events for clicking and dragging

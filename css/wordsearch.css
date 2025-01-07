@@ -12,12 +12,12 @@ h1, h2, #wordTheme, #solveButton, #newGameButton, .listWord {
 
 }
 
-h1, h2, #wordTheme, #solveButton, #newGameButton {
+h1, h2, #solveButton, #newGameButton {
 
 	border: 2px black solid;
 	border-radius: 8px;
 
-} 
+}
 
 h1, h2, .cell, #wordTheme, #wordlist {
 
@@ -71,12 +71,12 @@ body {
 	outline: 0;
 
 	/*ensures text can't be accidentally selected*/
-	cursor: default; 
+	cursor: default;
 	-moz-user-select: none;
-    -ms-user-select: none; 
-    -khtml-user-select: none; 
-    -webkit-user-select: none; 
-    -webkit-touch-callout: none; 
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 
 }
 
@@ -92,7 +92,7 @@ body {
 
 }
 
-.cell.selected { 
+.cell.selected {
 
 	background-color: rgb(106, 90, 205);
 
@@ -106,7 +106,7 @@ body {
 
 }
 
-#wordlist { 
+#wordlist {
 
 	margin: 40px auto 0 auto;
 	border: 2px black solid;
@@ -114,7 +114,7 @@ body {
 	min-width: 600px;
 	font-size: 17px;
 	text-align: center;
-	
+
 }
 
 .listRow {
@@ -126,14 +126,14 @@ body {
 .listWord {
 
 	display: table-cell;
-	
+
 }
 
 .listWord.found {
 
 	color: rgb(158, 123, 158);
 	text-decoration: line-through;
-	
+
 }
 
 #solveButton, #newGameButton {
@@ -164,4 +164,20 @@ body {
 		 url("../fonts/Moon-Bold.woff") format("woff");
 	font-weight: bold;
 
+}
+
+#wordlist {
+  width: 100%;
+}
+
+.listRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.listWord {
+  list-style: none;
+  padding: 8px;
+  text-align: center;
 }
