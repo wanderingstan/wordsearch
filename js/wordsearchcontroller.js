@@ -4,7 +4,7 @@
  * and for refreshing/setting up a new game).
  *
  * @author Noor Aftab
- *	
+ *
  * @param {String} gameId ID of the word search game div (where the actual grid of letters goes)
  * @param {String} listId ID of the div where the list of words to find goes
  * @param {String} solveId ID for button to solve the puzzle
@@ -15,46 +15,28 @@
 
 function WordSearchController(gameId, listId, solveId, newGameId, instructionsId, themeId) {
 
-	//an object containing various themes/words for the game
+	// an object containing various themes/words for the game
 	var searchTypes = {
 
-		"Math! (please don't run away)": [["asymptote", "differential", "algorithm", "boolean"],
-			["euclidean", "integral", "logarithm", "matrix"],
-			["riemann", "polyhedron", "theta", "vector"],
-			["binomial", "pythagoras", "eccentricity", "unit circle"],
-			["derivative",  "polar coordinates",  "tangent", "scalene"]],
-
-		"Astronomy and Physics!": [["circumpolar", "comet", "asteroid", "declination"],
-			["earthshine", "albedo", "quantum", "olivine"], 
-			["pyroxene", "decoherence", "fermion", "quark"],
-			["gluon", "redshift", "inflaton", "planetesimal"],
-			["anthropic", "exogenesis", "atom", "planck"]],
-
-		"Philosophy!": [["metaphysics", "modus ponens", "modus tollens", "analogy"],
-			["a priori", "a posteriori", "conditional", "nietzsche"],
-			["diogenes", "paradox", "occam's razor", "causality"],
-			["induction", "deduction", "ontology", "theology"],
-			["syllogism", "ethics", "karl marx", "pluralism"]],
-
-		"World Mythology :D": [["chronos", "aether", "hypnos", "psyche"],
-			["jupiter", "sol", "chaos", "pandora"],
-			["thor", "valhalla", "amaterasu", "osiris"],
-			["mazu", "izanami", "susanoo", "xipe totec"],
-			["mercury", "bastet", "sekhmet", "ptah"]],
-
-		"Shades of Purple!": [["violet", "periwinkle", "plum", "grape"],
-			["orchid", "wine", "mauve", "lavender"],
-			["lilac", "mulberry", "eggplant", "heliotrope"],
-			["liseran purple", "amethyst", "fuchsia", "pomp and power"],
-			["sangria", "boysenberry", "thistle", "heather"]],
-
-		"The Many Different Flavors of Cat!": [["Russian Blue", "Siamese", "Persian", "Sphynx"],
-			["Ragdoll", "Singapura", "Snowshoe", "Turkish Van"],
-			["Maine Coon", "Devon Rex", "Charteux", "Scottish Fold"],
-			["Himalayan", "Ragamuffin", "Bombay", "Siberian"],
-			["Egyptian Mau", "Norwegian Forest Cat", "Abyssinian", "York Chocolate"]]
-
+		"Math! (please don't run away)": [["asymptote", "differential", "algorithm", "boolean", "bob", "toad", "fart", "yes"],
+			// ["euclidean", "integral", "logarithm", "matrix"],
+			// ["riemann", "polyhedron", "theta", "vector"],
+			// ["binomial", "pythagoras", "eccentricity", "unit circle"],
+			// ["derivative",  "polar coordinates",  "tangent", "scalene"]
+      ],
 	};
+
+  // // Extract search parameters from the URL
+  // const urlParams = new URLSearchParams(window.location.search);
+  // const theme = urlParams.get('theme');
+  // const wordList = urlParams.get('word_list');
+
+  // // Parse the word list into a 2D array
+  // const wordArray = wordList ? JSON.parse(wordList) : [];
+
+  // // Create the JSON object
+  // const searchTypes = {};
+  // searchTypes[theme] = wordArray;
 
 	//variables to store game logic and it's view
 	var game;
@@ -66,18 +48,18 @@ function WordSearchController(gameId, listId, solveId, newGameId, instructionsId
 	//function call to start the word search game
 	setUpWordSearch();
 
-	/** randomly chooses a word theme and sets up the game matrix and the game 
+	/** randomly chooses a word theme and sets up the game matrix and the game
 	 * view to reflect that theme
 	 */
 	function setUpWordSearch() {
 
-		//generates a random theme 
+		//generates a random theme
 		var searchTypesArray = Object.keys(searchTypes); //converts theme object to array
 		var randIndex = Math.floor(Math.random()*searchTypesArray.length); //generates random number/index
 		var listOfWords = searchTypes[searchTypesArray[randIndex]]; //retrieves the matrix of words from random index
 
 		//converts letters to uppercase
-		convertToUpperCase(listOfWords); 
+		convertToUpperCase(listOfWords);
 
 		//sets the headings to reflect the instructions and themes
 		updateHeadings(mainInstructions, searchTypesArray[randIndex]);

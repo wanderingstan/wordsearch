@@ -1,19 +1,19 @@
 "use strict";
 
-/** Sets up the logic of the word search game by inserting the given list of words into 
+/** Sets up the logic of the word search game by inserting the given list of words into
  * a 2D matrix in various orientations (global objects defined in wordpaths.js)
  *
  * @param {String} gameId ID for the word search grid container
  * @param {String[][]} list 2D array of words to insert into the word matrix
  */
 
-function WordSearchLogic(gameId,list) {
+function WordSearchLogic(gameId,list,size=5) {
 
 	//object to hold common board variables
 	var board = {
 
 		matrix: [], //empty array where the matrix will go
-		size: 20 //width + height of the matrix
+		size //width + height of the matrix
 
 	};
 
@@ -28,7 +28,7 @@ function WordSearchLogic(gameId,list) {
 	//empty object to hold the locations of each fitted word
 	var wordLocations = {};
 
-	/** setUpGame is a property of WordSearchLogic that initializes the creation of the 
+	/** setUpGame is a property of WordSearchLogic that initializes the creation of the
 	 * word matrix!
 	 */
 	this.setUpGame = function() {
@@ -44,7 +44,7 @@ function WordSearchLogic(gameId,list) {
 
 	}
 
-	/** this function creates a matrix 
+	/** this function creates a matrix
 	 *
 	 * @param {Number} size the width and height to create the matrix
 	 * @return a 2D square array
@@ -83,9 +83,9 @@ function WordSearchLogic(gameId,list) {
 				var trimmedWord = trimWord(wordList[i][j]);
 
 				//tries 50 times to fit the word into the matrix
-				for (var k = 0; thisWord.wordFitted == false && k < 100; k++) {		
+				for (var k = 0; thisWord.wordFitted == false && k < 100; k++) {
 
-					insertWordIntoMatrix(trimmedWord, matrix);	
+					insertWordIntoMatrix(trimmedWord, matrix);
 
 				}
 
@@ -103,9 +103,9 @@ function WordSearchLogic(gameId,list) {
 				//otherwise, set it to false for next iteration
 				else {
 
-					thisWord.wordFitted = false; 
+					thisWord.wordFitted = false;
 
-				}	
+				}
 
 			}
 
@@ -135,7 +135,7 @@ function WordSearchLogic(gameId,list) {
 
 	}
 
-	/** finds possible orientations for the word to take 
+	/** finds possible orientations for the word to take
 	 *
 	 * (shortened parameter names for the sake of brevity)
 	 *
@@ -180,10 +180,10 @@ function WordSearchLogic(gameId,list) {
 		}
 
 	}
-	
+
 	/** properly places the given word into the puzzle array!
 	 *
-	 * @param {String} w word to set 
+	 * @param {String} w word to set
 	 * @param {Array[]} m matrix to set the word into
 	 * @param {Number} x row to start placing the word from
 	 * @param {Number} y column to start placing the word from
@@ -198,8 +198,8 @@ function WordSearchLogic(gameId,list) {
 		 * conditions: k - less than total length of word
 		 *			   x & y - stay within recommended bounds for orientation p
 		 *
-		 * increments: k incremented by 1, 
-		 *			   x and y incremented by values determined for path p inside  
+		 * increments: k incremented by 1,
+		 *			   x and y incremented by values determined for path p inside
 		 *			   object 'incr'
 		 */
 		for (var k = 0, x, y; k < w.length; k++, x = incr[p](x, y).x, y = incr[p](x, y).y) {
@@ -223,7 +223,7 @@ function WordSearchLogic(gameId,list) {
 	 */
 	function doesOrientationFit(w, m, x, y, p) {
 
-		//how many letters fit 
+		//how many letters fit
 		var letterCount = 0;
 
 		//variable to store word length
@@ -239,8 +239,8 @@ function WordSearchLogic(gameId,list) {
 		 * conditions: k - less than total length of word
 		 *			   x & y - stay within recommended bounds for path p
 		 *
-		 * increments: k - incremented by 1, 
-		 *			   x & y - incremented by values determined for path p inside  
+		 * increments: k - incremented by 1,
+		 *			   x & y - incremented by values determined for path p inside
 		 *			   object 'incr'
 		 */
 		for (var k = 0, x, y; k < wl && bounds[p](x, y, ml); k++, x = incr[p](x, y).x, y = incr[p](x, y).y) {
@@ -293,7 +293,7 @@ function WordSearchLogic(gameId,list) {
 
 	/**  removes an array element from the array!
 	 *
-	 * @param {Array} array from which to remove an element from 
+	 * @param {Array} array from which to remove an element from
 	 * @param {*} indexElement (same type of given array) index to remove
 	 * @return the array without indexElement
 	 */
@@ -313,7 +313,7 @@ function WordSearchLogic(gameId,list) {
 		return Math.floor(Math.random()*(bound));
 
 	}
-	/** 'trims' the given word by removing non-alphanumeric characters 
+	/** 'trims' the given word by removing non-alphanumeric characters
 	 * (alphanumeric characters: [A-Z, a-z, 0-9, _])
 	 *
 	 * @param {String} word
@@ -326,7 +326,7 @@ function WordSearchLogic(gameId,list) {
 	}
 
 	/** getter method for the word search grid the words are placed in
-	 * 
+	 *
 	 * @return the 2D matrix
 	 */
 	this.getMatrix = function() {
@@ -335,14 +335,14 @@ function WordSearchLogic(gameId,list) {
 
 	}
 
-	/** getter for the locations and orientations of all the words placed in the 
-	 * word search puzzle 
+	/** getter for the locations and orientations of all the words placed in the
+	 * word search puzzle
 	 *
 	 * @return an object containing the coordinates/paths of all placed words
 	 */
 	this.getWordLocations = function() {
 
-		return wordLocations; 
+		return wordLocations;
 
 	}
 	/** getter method for list of words to find
