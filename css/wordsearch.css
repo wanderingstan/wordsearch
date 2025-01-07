@@ -1,183 +1,183 @@
+/* Base Styling */
 * {
-
-	text-align: center;
-	font-family:  "Moon", Arial, sans serif;
-	font-weight: normal;
-
-}
-
-h1, h2, #wordTheme, #solveButton, #newGameButton, .listWord {
-
-	padding: 5px;
-
-}
-
-h1, h2, #solveButton, #newGameButton {
-
-	border: 2px black solid;
-	border-radius: 8px;
-
-}
-
-h1, h2, .cell, #wordTheme, #wordlist {
-
-	background-color: white;
-
-}
-
-h1, h2 {
-
-	margin: 10px auto 10px auto;
-	display: table;
-
+  text-align: center;
+  font-family: "Moon", Arial, sans-serif;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-
-	background-color: #EAF7FB;
-
+  background-color: #f0f4f8;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
 }
 
-#wordTheme {
-
-	border-radius: 8px;
-
+/* Headings */
+h1, h2 {
+  margin: 5px auto;
+  /* padding: 10px 20px; */
+  /* border: 2px solid #5a5e8f; */
+  /* border-radius: 12px; */
+  /* background-color: #ffffff; */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  display: inline-block;
+  font-size: 1.8rem;
+  color: #5a5e8f;
 }
 
+/* Buttons */
+#solveButton, #newGameButton {
+  background: linear-gradient(135deg, #82c582, #5ca45c);
+  color: #ffffff;
+  margin: 20px auto;
+  padding: 10px 20px;
+  display: block;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#solveButton:hover, #newGameButton:hover {
+  background: linear-gradient(135deg, #72b472, #4b894b);
+  transform: scale(1.05);
+}
+
+/* Word Board */
 #wordboard {
-
-	margin: 20px auto 0 auto;
-	border: 2px black solid;
-	display: table;
-	min-width: 600px;
-
+  margin: 5px auto;
+  padding: 10px;
+  border: 2px solid #5a5e8f;
+  display: table;
+  /* min-width: 600px; */
+  /* border-radius: 12px; */
+  background-color: #ffffff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .boardRow {
-
-	display: table-row;
-
+  display: table-row;
 }
 
 .cell {
-
-	margin: 0 auto;
-	border: none;
-	display: table-cell;
-	height:30px;
-	width: 30px;
-	font-size: 17px;
-	padding: 0;
-	outline: 0;
-
-	/*ensures text can't be accidentally selected*/
-	cursor: default;
-	-moz-user-select: none;
-    -ms-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-
+  display: table-cell;
+  height: 28px;
+  width: 28px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 1px solid transparent;
+  outline: none;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: #ffffff;
 }
 
 .cell:hover {
-
-	background-color: rgb(151, 141, 242);
-
+  background-color: #cdd4f5;
+  transform: scale(1.1);
 }
 
 .cell.selectable {
-
-	background-color: rgb(206, 206, 234);
-
+  background-color: #e6e9fa;
 }
 
 .cell.selected {
-
-	background-color: rgb(106, 90, 205);
-
+  background-color: #8a89e5;
+  color: #ffffff;
 }
 
 .cell.found {
-
-	background-color: rgb(158, 123, 158);
-	border: 1px black solid;
-	font-weight: bold;
-
+  background-color: #a477a4;
+  border: 1px solid #5a5e8f;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
+
 
 #wordlist {
-
-	margin: 40px auto 0 auto;
-	border: 2px black solid;
-	display: table;
-	min-width: 600px;
-	font-size: 17px;
-	text-align: center;
-
-}
-
-.listRow {
-
-	display: table-row;
-
-}
-
-.listWord {
-
-	display: table-cell;
-
-}
-
-.listWord.found {
-
-	color: rgb(158, 123, 158);
-	text-decoration: line-through;
-
-}
-
-#solveButton, #newGameButton {
-
-	background-color: rgb(199, 226, 201);
-	margin: 20px auto 20px auto;
-	display: block;
-	outline: 0;
-	border-radius: 8px;
-	font-size: 18px;
-	font-weight: bold;
-
-}
-
-@font-face {
-
-	font-family: "Moon";
-	src: url("../fonts/Moon-Regular.woff2") format("woff2"),
-		 url("../fonts/Moon-Regular.woff") format("woff");
-	font-weight: normal;
-
-}
-
-@font-face {
-
-	font-family: "Moon";
-	src: url("../fonts/Moon-Bold.woff2") format("woff2"),
-		 url("../fonts/Moon-Bold.woff") format("woff");
-	font-weight: bold;
-
-}
-
-#wordlist {
-  width: 100%;
+  /* margin: 40px auto; */
+  /* border: 2px solid #5a5e8f; */
+  /* border-radius: 12px; */
+  /* background-color: #ffffff; */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  font-size: 1rem;
+  padding: 10px;
+  width: 90%;
+  max-width: 800px;
+  text-align: left;
 }
 
 .listRow {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 10px;
+  gap: 2px;
 }
 
 .listWord {
   list-style: none;
-  padding: 8px;
+  padding: 3px;
   text-align: center;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}
+
+/* .listWord {
+  flex: 1 1 calc(33.33% - 10px);
+  background-color: #f8f9fc;
+  border-radius: 8px;
+  padding: 8px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+} */
+
+.listWord.found {
+  background-color: #a477a4;
+  color: #ffffff;
+  text-decoration: line-through;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Theme */
+/* h1 {
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #ffffff;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+} */
+
+/* Font Faces */
+@font-face {
+  font-family: "Moon";
+  src: url("../fonts/Moon-Regular.woff2") format("woff2"),
+       url("../fonts/Moon-Regular.woff") format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Moon";
+  src: url("../fonts/Moon-Bold.woff2") format("woff2"),
+       url("../fonts/Moon-Bold.woff") format("woff");
+  font-weight: bold;
+}
+
+#instructions {
+  font-size: smaller;
 }

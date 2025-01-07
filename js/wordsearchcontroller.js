@@ -5,7 +5,7 @@ function calculateGridSize(words) {
   const flattenedWords = words.flat();
 
   // Constants for assumptions
-  const overlapFactor = 0.6; // Percentage of overlapping letters in the grid
+  const overlapFactor = 0.8; // Percentage of overlapping letters in the grid
   const fillerFactor = 0.4; // Percentage of filler letters in the grid
 
   // Calculate the total number of letters in all words
