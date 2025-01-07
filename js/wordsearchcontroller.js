@@ -16,27 +16,27 @@
 function WordSearchController(gameId, listId, solveId, newGameId, instructionsId, themeId) {
 
 	// an object containing various themes/words for the game
-	var searchTypes = {
+	// var searchTypes = {
 
-		"Math! (please don't run away)": [["asymptote", "differential", "algorithm", "boolean", "bob", "toad", "fart", "yes"],
-			// ["euclidean", "integral", "logarithm", "matrix"],
-			// ["riemann", "polyhedron", "theta", "vector"],
-			// ["binomial", "pythagoras", "eccentricity", "unit circle"],
-			// ["derivative",  "polar coordinates",  "tangent", "scalene"]
-      ],
-	};
+	// 	"Math! (please don't run away)": [["asymptote", "differential", "algorithm", "boolean", "bob", "toad", "fart", "yes"],
+	// 		// ["euclidean", "integral", "logarithm", "matrix"],
+	// 		// ["riemann", "polyhedron", "theta", "vector"],
+	// 		// ["binomial", "pythagoras", "eccentricity", "unit circle"],
+	// 		// ["derivative",  "polar coordinates",  "tangent", "scalene"]
+  //     ],
+	// };
 
-  // // Extract search parameters from the URL
-  // const urlParams = new URLSearchParams(window.location.search);
-  // const theme = urlParams.get('theme');
-  // const wordList = urlParams.get('word_list');
+  // Extract search parameters from the URL
+  var urlParams = new URLSearchParams(window.location.search);
+  var theme = urlParams.get('theme');
+  var wordList = urlParams.get('word_list');
 
-  // // Parse the word list into a 2D array
-  // const wordArray = wordList ? JSON.parse(wordList) : [];
+  // Parse the word list into a 2D array
+  var wordArray = wordList ? JSON.parse(wordList) : [];
 
-  // // Create the JSON object
-  // const searchTypes = {};
-  // searchTypes[theme] = wordArray;
+  // Create the JSON object
+  var searchTypes = {};
+  searchTypes[theme] = [wordArray];
 
 	//variables to store game logic and it's view
 	var game;
@@ -58,14 +58,19 @@ function WordSearchController(gameId, listId, solveId, newGameId, instructionsId
 		var randIndex = Math.floor(Math.random()*searchTypesArray.length); //generates random number/index
 		var listOfWords = searchTypes[searchTypesArray[randIndex]]; //retrieves the matrix of words from random index
 
+    // // Create a deep copy of the nested array
+    // var listOfWords = searchTypes[searchTypesArray[randIndex]].map(function(innerArray) {
+    //   return innerArray.slice();
+    // });
+
 		//converts letters to uppercase
-		convertToUpperCase(listOfWords);
+		listOfWords = convertToUpperCase(listOfWords);
 
 		//sets the headings to reflect the instructions and themes
 		updateHeadings(mainInstructions, searchTypesArray[randIndex]);
 
 		//runs the logic of the game using a close of the word list (to avoid the actual object being altered)
-		game = new WordSearchLogic(gameId, listOfWords.slice());
+		game = new WordSearchLogic(listOfWords.slice(), 10);
 		game.setUpGame();
 
 		//generates the view of the game and sets up mouse events for clicking and dragging
@@ -79,19 +84,21 @@ function WordSearchController(gameId, listId, solveId, newGameId, instructionsId
 	 *
 	 * @param {String[][]} wordList a matrix of words to convert to uppercase
 	 */
-	function convertToUpperCase(wordList)  {
+  function convertToUpperCase(wordList) {
+      var upperCasedList = [];
 
-		for (var i = 0; i < wordList.length; i++) {
+      for (var i = 0; i < wordList.length; i++) {
+          var upperCasedSubList = [];
 
-			for(var j = 0; j < wordList[i].length; j++) {
+          for (var j = 0; j < wordList[i].length; j++) {
+              upperCasedSubList.push(wordList[i][j].toUpperCase());
+          }
 
-				wordList[i][j] = wordList[i][j].toUpperCase();
+          upperCasedList.push(upperCasedSubList);
+      }
 
-			}
-
-		}
-
-	}
+      return upperCasedList;
+  }
 
 	/** updates the instructions (h2) and theme (h3) headings according to the given
 	 * text parameters
